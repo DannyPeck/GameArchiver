@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
 		"start": "node ./app",
-    "test": "env NODE_ENV=test mocha --recursive tests/tests"
+    "test": "env NODE_ENV=test mocha --recursive tests"
   },
   "dependencies": {
     "@onehilltech/blueprint": "^1.5.1",

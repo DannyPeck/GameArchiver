@@ -22,3 +22,4 @@ addons:
 
 after_success:
    - npm run coveralls
+   - codeclimate-test-reporter < lcov.info

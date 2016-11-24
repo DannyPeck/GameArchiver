@@ -2,6 +2,8 @@ var passport       = require ('passport')
   , BearerStrategy = require ('passport-http-bearer').Strategy
   ;
 
+module.exports = exports = initPassport;
+
 function initPassport (app) {
   var User = app.models.User;
 
@@ -16,5 +18,3 @@ function initPassport (app) {
     }
   ));
 }
-
-module.exports = exports = initPassport;

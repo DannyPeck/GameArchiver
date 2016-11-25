@@ -8,6 +8,10 @@ var appPath = require ('../../fixtures/appPath')
   ;
 
 describe ('UserRouter', function () {
+
+  var user;
+  var userToken;
+
   before (function (done) {
     blueprint.testing.createApplicationAndStart (appPath, done);
   });
@@ -22,19 +26,49 @@ describe ('UserRouter', function () {
       it ('should create a user with valid input', function (done) {
         var userData = users[0];
 
-        request(blueprint.app.server.app)
+        request (blueprint.app.server.app)
           .post ('/users')
           .send (userData)
           .expect (200)
           .end (function (err, res) {
             if (err) { return done (err); }
 
-            expect (userData.user.email).to.equal (res.body.user.email);
+            user = res.body.user;
+
+            expect (userData.user.email).to.equal (user.email);
             return done ();
           });
       });
     });
+  });
 
+  describe ('/v1/users', function () {
+
+    before (function (done) {
+      var credentials = {
+        username: user.username,
+        password: user.password
+      };
+
+      request (blueprint.app.server.app)
+        .post ('/login')
+        .send (credentials)
+        .end (function (err, res) {
+          if (err) { return done (err); }
+
+          userToken = res.body.token;
+          return done ();
+        });
+    });
+
+    describe ('GET', function () {
+      it ('should retrieve all users', function (done) {
+        request (blueprint.app.server.app)
+          .get ('/v1/users')
+          .set ('Authorization', 'bearer ' + userToken)
+          .expect (200, done);
+      });
+    });
   });
 });
 

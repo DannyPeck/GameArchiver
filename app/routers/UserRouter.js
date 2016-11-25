@@ -1,7 +1,5 @@
 module.exports = exports = {
   '/users': {
-    resource: {
-      controller: 'UserController'
-    }
+    post: { action: 'UserController@create' }
   }
 };

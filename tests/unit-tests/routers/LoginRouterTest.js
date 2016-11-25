@@ -29,7 +29,7 @@ describe ('LoginRouter.js', function () {
       var User = blueprint.app.models.User;
       var newUser = new User (userData);
 
-      newUser.save(function (err, user) {
+      newUser.save (function (err, user) {
         if (err) { return done (err); }
 
         credentials = {

@@ -12,6 +12,7 @@
   "dependencies": {
     "@onehilltech/blueprint": "^1.5.1",
     "@onehilltech/blueprint-mongodb": "^0.14.0",
+    "async": "^2.1.4",
     "chai": "^3.5.0",
     "coveralls": "^2.11.15",
     "istanbul": "^0.4.5",

@@ -17,6 +17,9 @@ addons:
       - ubuntu-toolchain-r-test
     packages:
       - g++-4.8
+  code_climate:
+      repo_token: 5bee24bb461a5e7bfa579d241446a0153a157662
 
 after_success:
    - npm run coveralls
+   - codeclimate-test-reporter < ./coverage/lcov.info
